@@ -5,7 +5,7 @@ import { PatuaText } from '../../components/StyledText';
 
 export default class PizzaScreen extends React.Component {
   static navigationOptions = {
-    title: 'Pasta',
+    title: 'Desserts',
     drawerLabel: () => null
   };
 
@@ -17,7 +17,7 @@ export default class PizzaScreen extends React.Component {
             <TouchableOpacity onPress={()=>this.props.navigation.navigate('Menu')}>
               <Ionicons name="md-arrow-back" size={28} color="white" />
             </TouchableOpacity>
-            <View style={styles.pageTitle}><PatuaText style={styles.pageTitleText}>Pasta</PatuaText></View>
+            <View style={styles.pageTitle}><PatuaText style={styles.pageTitleText}>Desserts</PatuaText></View>
             <TouchableOpacity onPress={()=>this.props.navigation.openDrawer()}>
               <Image
                 source={require('../../assets/images/menu-icon.png')}
@@ -28,28 +28,49 @@ export default class PizzaScreen extends React.Component {
           <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             <View style={styles.contentWrapper}>
               <View style={styles.contentHeader}>
-                <PatuaText style={styles.contentText}>Pasta is a hot favorite of Italian cuisine and is cooked with a combination of veggies, garlic, herbs, tomato & white sauce. </PatuaText>
+                <PatuaText style={styles.contentText}>Desserts bring a smile to all with visions  of Ice cream Sundaes, Sizzling Brownies & Brownies topped with Ice cream to give it a mixed summer winter tang.</PatuaText>
               </View>
               <View style={styles.mainContent}>
+                
                 <View style={styles.mainItem}>
                   <Image
-                    source={require('../../assets/images/products/pastaWhite.jpg')}
+                    source={require('../../assets/images/products/IceCreamSunday.jpg')}
                     resizeMode="cover"
                     style={styles.mainItemImage}
                   />
-                  <Text style={styles.mainItemTitle}>Pasta in white sauce</Text>
-                  <Text style={styles.mainItemSizePrice}>95.00/-</Text>
+                  <Text style={styles.mainItemTitle}>Ice cream Sundae</Text>
+                  <Text style={styles.mainItemSizePrice}>60.00/-</Text>
                 </View>
-
+                
                 <View style={styles.mainItem}>
                   <Image
-                    source={require('../../assets/images/products/pastaRed.jpg')}
+                    source={require('../../assets/images/products/SizzlingBrownie.jpg')}
                     resizeMode="cover"
                     style={styles.mainItemImage}
                   />
-                  <Text style={styles.mainItemTitle}>Pasta in red sauce</Text>
-                  <Text style={styles.mainItemSizePrice}>95.00/-</Text>                  
+                  <Text style={styles.mainItemTitle}>Sizzling Brownie</Text>
+                  <Text style={styles.mainItemSizePrice}>100.00/-</Text>
                 </View>
+                
+                <View style={styles.mainItem}>
+                  <Image
+                    source={require('../../assets/images/products/BrownieWithIceCream.jpg')}
+                    resizeMode="cover"
+                    style={styles.mainItemImage}
+                  />
+                  <Text style={styles.mainItemTitle}>Brownie With Ice Cream</Text>
+                  <Text style={styles.mainItemSizePrice}>70.00/-</Text>
+                </View> 
+                
+                <View style={styles.mainItem}>
+                  <Image
+                    source={require('../../assets/images/products/Brownie.jpg')}
+                    resizeMode="cover"
+                    style={styles.mainItemImage}
+                  />
+                  <Text style={styles.mainItemTitle}>Brownie</Text>
+                  <Text style={styles.mainItemSizePrice}>60.00/-</Text>
+                </View>             
                 
               </View>
             </View>

@@ -43,10 +43,10 @@ export default class HomeScreen extends React.Component {
 
           <View style={styles.getStartedContainer}>
 
-            <PatuaText style={styles.welcomeTitle}>Welcome to My Pizza</PatuaText>
+            <PatuaText style={styles.welcomeTitle}>Welcome to Kaju's Pizza</PatuaText>
 
             <PatuaText style={styles.welcomeText}>
-              My Pizza is specially designed as pizza lover’s paradise keeping in mind about the people obsessed about various pizza types. We also have a different kinds sandwich, salad and  desserts that will surely suit your taste buds and we offer a very affordable price.
+              Fall in love with this specially designed Pizza paradise. Try out our different types of piping hot & flavorful pizzas. We also have a variety of sandwiches, salads and desserts to suit your choice and at affordable prices.
             </PatuaText>
             <TouchableOpacity onPress={()=>this.props.navigation.navigate('Offers')} style={styles.homeButton}>
               <PatuaText style={styles.homeButtonText}>Checkout Our Offers</PatuaText>

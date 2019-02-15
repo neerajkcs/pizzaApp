@@ -5,7 +5,7 @@ import { PatuaText } from '../../components/StyledText';
 
 export default class PizzaScreen extends React.Component {
   static navigationOptions = {
-    title: 'Pasta',
+    title: 'Combos',
     drawerLabel: () => null
   };
 
@@ -17,7 +17,7 @@ export default class PizzaScreen extends React.Component {
             <TouchableOpacity onPress={()=>this.props.navigation.navigate('Menu')}>
               <Ionicons name="md-arrow-back" size={28} color="white" />
             </TouchableOpacity>
-            <View style={styles.pageTitle}><PatuaText style={styles.pageTitleText}>Pasta</PatuaText></View>
+            <View style={styles.pageTitle}><PatuaText style={styles.pageTitleText}>Combos</PatuaText></View>
             <TouchableOpacity onPress={()=>this.props.navigation.openDrawer()}>
               <Image
                 source={require('../../assets/images/menu-icon.png')}
@@ -28,28 +28,43 @@ export default class PizzaScreen extends React.Component {
           <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             <View style={styles.contentWrapper}>
               <View style={styles.contentHeader}>
-                <PatuaText style={styles.contentText}>Pasta is a hot favorite of Italian cuisine and is cooked with a combination of veggies, garlic, herbs, tomato & white sauce. </PatuaText>
+                <PatuaText style={styles.contentText}>Combos are a way to a full filling treat of every variety at Kaju’s Pizza. We have Combos for Six, Four & Two persons</PatuaText>
               </View>
               <View style={styles.mainContent}>
+                
                 <View style={styles.mainItem}>
                   <Image
-                    source={require('../../assets/images/products/pastaWhite.jpg')}
+                    source={require('../../assets/images/products/ComboForSix.jpg')}
                     resizeMode="cover"
                     style={styles.mainItemImage}
                   />
-                  <Text style={styles.mainItemTitle}>Pasta in white sauce</Text>
-                  <Text style={styles.mainItemSizePrice}>95.00/-</Text>
+                  <Text style={styles.mainItemTitle}>Combo For Six</Text>
+                  <Text style={styles.mainItemDesc}>(Supreme Garlic Bread Cheese -2, Large Classic Pizza-2, Salad Bowl-, 6-Soft Drink, Brownie-6
+Slice) (Choice of Supreme Pizza-80/India Pizza-90)</Text>
+                  <Text style={styles.mainItemSizePrice}>949.00/-</Text>
                 </View>
-
+                
                 <View style={styles.mainItem}>
                   <Image
-                    source={require('../../assets/images/products/pastaRed.jpg')}
+                    source={require('../../assets/images/products/ComboForFour.jpg')}
                     resizeMode="cover"
                     style={styles.mainItemImage}
                   />
-                  <Text style={styles.mainItemTitle}>Pasta in red sauce</Text>
-                  <Text style={styles.mainItemSizePrice}>95.00/-</Text>                  
+                  <Text style={styles.mainItemTitle}>Combo for Four</Text>
+                  <Text style={styles.mainItemDesc}>(Supreme Garlic Bread Cheese-1, Medium Classic Pizza-2, Salad Bowl-1, 4-Soft Drink, Brownie-4 slice)(Choice of Supreme Pizza-60/India Pizza-70)</Text>
+                  <Text style={styles.mainItemSizePrice}>599.00/-</Text>
                 </View>
+                
+                <View style={styles.mainItem}>
+                  <Image
+                    source={require('../../assets/images/products/ComboForTwo.jpg')}
+                    resizeMode="cover"
+                    style={styles.mainItemImage}
+                  />
+                  <Text style={styles.mainItemTitle}>Combo for Two</Text>
+                  <Text style={styles.mainItemDesc}>(Garlic Bread Cheese-1, Medium Classic Pizza-1, 2-Soft drink, Brownie-2 Slice)(Choice of Supreme Pizza-40/India Pizza-50)</Text>
+                  <Text style={styles.mainItemSizePrice}>269.00/-</Text>
+                </View>               
                 
               </View>
             </View>

@@ -5,7 +5,7 @@ import { PatuaText } from '../../components/StyledText';
 
 export default class PizzaScreen extends React.Component {
   static navigationOptions = {
-    title: 'Pasta',
+    title: 'Sandwich',
     drawerLabel: () => null
   };
 
@@ -17,7 +17,7 @@ export default class PizzaScreen extends React.Component {
             <TouchableOpacity onPress={()=>this.props.navigation.navigate('Menu')}>
               <Ionicons name="md-arrow-back" size={28} color="white" />
             </TouchableOpacity>
-            <View style={styles.pageTitle}><PatuaText style={styles.pageTitleText}>Pasta</PatuaText></View>
+            <View style={styles.pageTitle}><PatuaText style={styles.pageTitleText}>Sandwich</PatuaText></View>
             <TouchableOpacity onPress={()=>this.props.navigation.openDrawer()}>
               <Image
                 source={require('../../assets/images/menu-icon.png')}
@@ -28,29 +28,49 @@ export default class PizzaScreen extends React.Component {
           <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             <View style={styles.contentWrapper}>
               <View style={styles.contentHeader}>
-                <PatuaText style={styles.contentText}>Pasta is a hot favorite of Italian cuisine and is cooked with a combination of veggies, garlic, herbs, tomato & white sauce. </PatuaText>
+                <PatuaText style={styles.contentText}>Sandwiches are a popular form of packed food that can be had in breakfast, lunch or dinner. Bread, butter, cheese, veggies & condiments can be layered as per choice and taste.</PatuaText>
               </View>
               <View style={styles.mainContent}>
+                
                 <View style={styles.mainItem}>
                   <Image
-                    source={require('../../assets/images/products/pastaWhite.jpg')}
+                    source={require('../../assets/images/products/vegsandwich1.jpg')}
                     resizeMode="cover"
                     style={styles.mainItemImage}
                   />
-                  <Text style={styles.mainItemTitle}>Pasta in white sauce</Text>
-                  <Text style={styles.mainItemSizePrice}>95.00/-</Text>
-                </View>
-
-                <View style={styles.mainItem}>
-                  <Image
-                    source={require('../../assets/images/products/pastaRed.jpg')}
-                    resizeMode="cover"
-                    style={styles.mainItemImage}
-                  />
-                  <Text style={styles.mainItemTitle}>Pasta in red sauce</Text>
-                  <Text style={styles.mainItemSizePrice}>95.00/-</Text>                  
+                  <Text style={styles.mainItemTitle}>Veg Cheese Sandwich (French)</Text>
+                  <Text style={styles.mainItemSizePrice}>70.00/-</Text>
                 </View>
                 
+                <View style={styles.mainItem}>
+                  <Image
+                    source={require('../../assets/images/products/vegsandwich.jpg')}
+                    resizeMode="cover"
+                    style={styles.mainItemImage}
+                  />
+                  <Text style={styles.mainItemTitle}>Vegetable Sandwich (French)</Text>
+                  <Text style={styles.mainItemSizePrice}>60.00/-</Text>
+                </View>
+                
+                <View style={styles.mainItem}>
+                  <Image
+                    source={require('../../assets/images/products/vegsandwich2.jpg')}
+                    resizeMode="cover"
+                    style={styles.mainItemImage}
+                  />
+                  <Text style={styles.mainItemTitle}>Cheesy Surprise (Panini)</Text>
+                  <Text style={styles.mainItemSizePrice}>75.00/-</Text>
+                </View>
+                
+                <View style={styles.mainItem}>
+                  <Image
+                    source={require('../../assets/images/products/vegsandwich3.jpg')}
+                    resizeMode="cover"
+                    style={styles.mainItemImage}
+                  />
+                  <Text style={styles.mainItemTitle}>Italian Magic (Panini)</Text>
+                  <Text style={styles.mainItemSizePrice}>75.00/-</Text>
+                </View>
               </View>
             </View>
           </ScrollView>

@@ -30,7 +30,7 @@ export default class MenuScreen extends React.Component {
           <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             <View style={styles.contentWrapper}>
               <View style={styles.contentHeader}>
-                <PatuaText style={styles.contentText}>Click on a choice below to see the variety of food we serve for your appetite.</PatuaText>
+                <PatuaText style={styles.contentText}>Choose to your liking</PatuaText>
               </View>
               <View style={styles.mainContent}>
                 <TouchableOpacity onPress={()=>this.props.navigation.navigate('Pizza')} style={styles.menuItem}>
@@ -41,7 +41,7 @@ export default class MenuScreen extends React.Component {
                   />
                   <View style={styles.menuItemOverlay}><Text style={styles.menuItemText}>Pizza</Text></View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=>this.props.navigation.Pizza()} style={styles.menuItem}>
+                <TouchableOpacity onPress={()=>this.props.navigation.navigate('Pasta')} style={styles.menuItem}>
                 <Image
                     source={require('../assets/images/pasta-cat.jpg')}
                     resizeMode="cover"
@@ -49,7 +49,7 @@ export default class MenuScreen extends React.Component {
                   />
                   <View style={styles.menuItemOverlay}><Text style={styles.menuItemText}>Pasta</Text></View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=>this.props.navigation.Pizza()} style={styles.menuItem}>
+                <TouchableOpacity onPress={()=>this.props.navigation.navigate('Garlic')} style={styles.menuItem}>
                 <Image
                     source={require('../assets/images/garlicbread-cat.jpg')}
                     resizeMode="cover"
@@ -57,7 +57,7 @@ export default class MenuScreen extends React.Component {
                   />
                   <View style={styles.menuItemOverlay}><Text style={styles.menuItemText}>Garlic Bread</Text></View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=>this.props.navigation.Pizza()} style={styles.menuItem}>
+                <TouchableOpacity onPress={()=>this.props.navigation.navigate('Sandwich')} style={styles.menuItem}>
                 <Image
                     source={require('../assets/images/sandwich-cat.jpg')}
                     resizeMode="cover"
@@ -65,7 +65,7 @@ export default class MenuScreen extends React.Component {
                   />
                   <View style={styles.menuItemOverlay}><Text style={styles.menuItemText}>Sandwich</Text></View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=>this.props.navigation.Pizza()} style={styles.menuItem}>
+                <TouchableOpacity onPress={()=>this.props.navigation.navigate('Snacks')} style={styles.menuItem}>
                 <Image
                     source={require('../assets/images/snacks-cat.jpg')}
                     resizeMode="cover"
@@ -73,7 +73,7 @@ export default class MenuScreen extends React.Component {
                   />
                   <View style={styles.menuItemOverlay}><Text style={styles.menuItemText}>Snacks</Text></View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=>this.props.navigation.Pizza()} style={styles.menuItem}>
+                <TouchableOpacity onPress={()=>this.props.navigation.navigate('Combos')} style={styles.menuItem}>
                 <Image
                     source={require('../assets/images/combo-cat.jpg')}
                     resizeMode="cover"
@@ -81,7 +81,7 @@ export default class MenuScreen extends React.Component {
                   />
                   <View style={styles.menuItemOverlay}><Text style={styles.menuItemText}>Combos</Text></View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=>this.props.navigation.Pizza()} style={styles.menuItem}>
+                <TouchableOpacity onPress={()=>this.props.navigation.navigate('Beverages')} style={styles.menuItem}>
                 <Image
                     source={require('../assets/images/beverages-cat.jpg')}
                     resizeMode="cover"
@@ -89,7 +89,7 @@ export default class MenuScreen extends React.Component {
                   />
                   <View style={styles.menuItemOverlay}><Text style={styles.menuItemText}>Beverages</Text></View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=>this.props.navigation.Pizza()} style={styles.menuItem}>
+                <TouchableOpacity onPress={()=>this.props.navigation.navigate('Desserts')} style={styles.menuItem}>
                 <Image
                     source={require('../assets/images/desserts-cat.jpg')}
                     resizeMode="cover"

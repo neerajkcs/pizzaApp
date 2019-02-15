@@ -8,6 +8,12 @@ import MenuScreen from './screens/MenuScreen';
 import OffersScreen from './screens/OffersScreen';
 import PizzaScreen from './screens/menu_items/PizzaScreen';
 import PastaScreen from './screens/menu_items/PastaScreen';
+import GarlicBread from './screens/menu_items/GarlicBread';
+import Sandwich from './screens/menu_items/Sandwich';
+import Snacks from './screens/menu_items/Snacks';
+import Combos from './screens/menu_items/Combos';
+import Beverages from './screens/menu_items/Beverages';
+import Desserts from './screens/menu_items/Desserts';
 
 export default class App extends React.Component {
   state = {
@@ -59,17 +65,17 @@ export default class App extends React.Component {
 }
 const CustomDrawerComponent =(props) => (
   <SafeAreaView style={{flex: 1}}>
-    <View style={{height: 150, alignItems: 'center', justifyContent: 'center'}}>
-      <Image source={require('./assets/images/pizza-logo.png')} style={{width: 180, height: 120}} />
+    <View style={{height: 200, alignItems: 'center', justifyContent: 'center'}}>
+      <Image source={require('./assets/images/pizza-logo.png')} style={{width: 180, height: 150}} />
     </View>
     <ScrollView>
       <DrawerItems {...props} />
 
       <View style={styles.menuItem}>
-        <Ionicons name="ios-mail" size={18} style={styles.menuItemIcon} /><Text style={styles.menuItemText}>info@abcd.com</Text>
+        <Ionicons name="ios-mail" size={18} style={styles.menuItemIcon} /><Text style={styles.menuItemText}>info@kajuspizza.com</Text>
       </View>
       <View style={styles.menuItem}>
-        <Ionicons name="ios-call" size={18} style={styles.menuItemIcon} /><Text style={styles.menuItemText}>000-000-0000</Text>
+        <Ionicons name="ios-call" size={18} style={styles.menuItemIcon} /><Text style={styles.menuItemText}>+91-9950560048</Text>
       </View>
     </ScrollView>
   </SafeAreaView>
@@ -90,6 +96,24 @@ const AppDrawerNavigator = createDrawerNavigator({
   },
   Pasta: {
     screen: PastaScreen,
+  },
+  Garlic: {
+    screen: GarlicBread,
+  },
+  Sandwich: {
+    screen: Sandwich,
+  },
+  Snacks: {
+    screen: Snacks,
+  },
+  Combos: {
+    screen: Combos,
+  },
+  Beverages: {
+    screen: Beverages,
+  },
+  Desserts: {
+    screen: Desserts,
   }
 }, {
   contentComponent: CustomDrawerComponent,

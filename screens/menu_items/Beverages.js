@@ -5,7 +5,7 @@ import { PatuaText } from '../../components/StyledText';
 
 export default class PizzaScreen extends React.Component {
   static navigationOptions = {
-    title: 'Pasta',
+    title: 'Beverages',
     drawerLabel: () => null
   };
 
@@ -17,7 +17,7 @@ export default class PizzaScreen extends React.Component {
             <TouchableOpacity onPress={()=>this.props.navigation.navigate('Menu')}>
               <Ionicons name="md-arrow-back" size={28} color="white" />
             </TouchableOpacity>
-            <View style={styles.pageTitle}><PatuaText style={styles.pageTitleText}>Pasta</PatuaText></View>
+            <View style={styles.pageTitle}><PatuaText style={styles.pageTitleText}>Beverages</PatuaText></View>
             <TouchableOpacity onPress={()=>this.props.navigation.openDrawer()}>
               <Image
                 source={require('../../assets/images/menu-icon.png')}
@@ -28,28 +28,61 @@ export default class PizzaScreen extends React.Component {
           <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             <View style={styles.contentWrapper}>
               <View style={styles.contentHeader}>
-                <PatuaText style={styles.contentText}>Pasta is a hot favorite of Italian cuisine and is cooked with a combination of veggies, garlic, herbs, tomato & white sauce. </PatuaText>
+                <PatuaText style={styles.contentText}>Beverages are thirst quenchers with Mineral Water, Cold Drinks & Milk Shakes</PatuaText>
               </View>
               <View style={styles.mainContent}>
+                
                 <View style={styles.mainItem}>
                   <Image
-                    source={require('../../assets/images/products/pastaWhite.jpg')}
+                    source={require('../../assets/images/products/MineralWater.jpg')}
                     resizeMode="cover"
                     style={styles.mainItemImage}
                   />
-                  <Text style={styles.mainItemTitle}>Pasta in white sauce</Text>
-                  <Text style={styles.mainItemSizePrice}>95.00/-</Text>
+                  <Text style={styles.mainItemTitle}>Mineral Water</Text>
+                  <Text style={styles.mainItemSizePrice}>MRP</Text>
                 </View>
-
+                
                 <View style={styles.mainItem}>
                   <Image
-                    source={require('../../assets/images/products/pastaRed.jpg')}
+                    source={require('../../assets/images/products/ColdDrink750ml.jpg')}
                     resizeMode="cover"
                     style={styles.mainItemImage}
                   />
-                  <Text style={styles.mainItemTitle}>Pasta in red sauce</Text>
-                  <Text style={styles.mainItemSizePrice}>95.00/-</Text>                  
+                  <Text style={styles.mainItemTitle}>Cold Drink 750ml</Text>
+                  <Text style={styles.mainItemSizePrice}>MRP</Text>
                 </View>
+                
+                <View style={styles.mainItem}>
+                  <Image
+                    source={require('../../assets/images/products/ColdDrink200ml.jpg')}
+                    resizeMode="cover"
+                    style={styles.mainItemImage}
+                  />
+                  <Text style={styles.mainItemTitle}>Cold Drink 200ml</Text>
+                  <Text style={styles.mainItemSizePrice}>15.00/-</Text>
+                </View> 
+                
+                <View style={styles.mainItem}>
+                  <Image
+                    source={require('../../assets/images/products/MilkShakewithIcecream.jpg')}
+                    resizeMode="cover"
+                    style={styles.mainItemImage}
+                  />
+                  <Text style={styles.mainItemTitle}>Milk Shake with Ice cream</Text>
+                  <Text style={styles.mainItemDesc}>(Chocolate, Strawberry, Vanilla)</Text>
+                  <Text style={styles.mainItemSizePrice}>70.00/-</Text>
+                </View> 
+                
+                <View style={styles.mainItem}>
+                  <Image
+                    source={require('../../assets/images/products/MilkShake.jpg')}
+                    resizeMode="cover"
+                    style={styles.mainItemImage}
+                  />
+                  <Text style={styles.mainItemTitle}>Milk Shake</Text>
+                  <Text style={styles.mainItemDesc}>(Chocolate, Strawberry, Vanilla)</Text>
+                  <Text style={styles.mainItemSizePrice}>60.00/-</Text>
+                </View>               
                 
               </View>
             </View>
