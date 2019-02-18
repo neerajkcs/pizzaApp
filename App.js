@@ -72,6 +72,9 @@ const CustomDrawerComponent =(props) => (
       <DrawerItems {...props} />
 
       <View style={styles.menuItem}>
+        <Ionicons name="ios-pin" size={18} style={styles.menuItemIcon} /><Text style={styles.menuItemText}>356, First Floor Surya Plaza, University Main Road Udaipur City, Rajasthan</Text>
+      </View>
+      <View style={styles.menuItem}>
         <Ionicons name="ios-mail" size={18} style={styles.menuItemIcon} /><Text style={styles.menuItemText}>info@kajuspizza.com</Text>
       </View>
       <View style={styles.menuItem}>
@@ -136,7 +139,7 @@ const styles = StyleSheet.create({
   menuItem: {
     flexDirection: 'row',
     paddingHorizontal: 7,
-    paddingVertical: 15
+    paddingVertical: 12
   },
   menuItemIcon: {
     fontSize: 19,
@@ -146,6 +149,7 @@ const styles = StyleSheet.create({
   menuItemText: {
     fontFamily: 'patua-one',
     fontSize: 16,
-    marginHorizontal: 2
+    marginHorizontal: 2,
+    paddingRight: 40
   }
 });
