@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Kaju's Pizza",
-    "description": "Welcome to kaju's pizza",
-    "slug": "kaju's-pizza",
+    "name": "Kajus Pizza",
+    "description": "This App has been developed to provide information about Kazu'z Pizza restaurant situated in City of Lakes Udaipur.",
+    "slug": "kajus-pizza",
     "privacy": "public",
     "sdkVersion": "31.0.0",
     "platforms": [
