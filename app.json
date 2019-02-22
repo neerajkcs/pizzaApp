@@ -28,7 +28,8 @@
       "bundleIdentifier": "com.netiquette.kajuspizza"
     },
     "android": {
-      "package": "com.netiquette.kajuspizza"
+      "package": "com.netiquette.kajuspizza",
+      "permissions": []
     },
     "githubUrl": "https://github.com/neerajkcs/pizzaApp"
   }
