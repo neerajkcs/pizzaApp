@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, ScrollView, StyleSheet, View, Text, TouchableOpacity, Image, SafeAreaView } from 'react-native';
+import { FlatList, ActivityIndicator, Platform, ScrollView, StyleSheet, View, Text, TouchableOpacity, Image, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { PatuaText } from '../../components/StyledText';
 
@@ -9,7 +9,37 @@ export default class PizzaScreen extends React.Component {
     drawerLabel: () => null
   };
 
+  constructor(props){
+    super(props);
+    this.state ={ isLoading: true}
+  }
+
+  componentDidMount(){
+    return fetch('http://www.kajuspizza.com/kajusdev/api/pizzalist')
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({
+          isLoading: false,
+          dataSource: responseJson,
+        }, function(){
+
+        });
+
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
+  }
+
   render() {
+    if(this.state.isLoading){
+      return(
+        <View style={{flex: 1, padding: 20}}>
+          <ActivityIndicator/>
+        </View>
+      )
+    }
     return (
       <View style={styles.container}>
         <SafeAreaView style={{flex: 1}}>
@@ -31,305 +61,36 @@ export default class PizzaScreen extends React.Component {
                 <PatuaText style={styles.contentText}>Pizza is a celebration in itself. Bearing an Italian origin, it is a savory round dish made by flattening wheat based dough and topping it with ingredients of choice such as cheese, capsicum tomatoes etc. and served straight out from the oven. </PatuaText>
               </View>
               <View style={styles.mainContent}>
-                <View style={styles.mainItem}>
-                  <Text style={styles.mainViewTitle}>CLASSIC PIZZA</Text>
-                </View>
-                
-                <View style={styles.mainItem}>
-                  <Image
-                    source={require('../../assets/images/products/Margherita.jpg')}
-                    resizeMode="cover"
-                    style={styles.mainItemImage}
-                  />
-                  <Text style={styles.mainItemTitle}>Margherita</Text>
-                  <Text style={styles.mainItemDesc}>Lots of Cheese</Text>
-                  <View style={styles.mainItemSizes}>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Regular</Text>
-                      <Text style={styles.mainItemSizePrice}>90/-</Text>
-                    </View>
-                    <View style={[styles.mainItemSize, styles.horizontalBorders]}>
-                      <Text style={styles.mainItemSizeTitle}>Medium</Text>
-                      <Text style={styles.mainItemSizePrice}>150/-</Text>
-                    </View>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Large</Text>
-                      <Text style={styles.mainItemSizePrice}>250/-</Text>
-                    </View>
-                  </View>
-                </View>
 
-                <View style={styles.mainItem}>
-                  <Image
-                    source={require('../../assets/images/products/American-Margherita.jpg')}
-                    resizeMode="cover"
-                    style={styles.mainItemImage}
-                  />
-                  <Text style={styles.mainItemTitle}>American Margherita</Text>
-                  <Text style={styles.mainItemDesc}>Cheese, Tomato, Sweet Corn</Text>
-                  <View style={styles.mainItemSizes}>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Regular</Text>
-                      <Text style={styles.mainItemSizePrice}>100/-</Text>
+                <FlatList
+                  data={this.state.dataSource}
+                  renderItem={({item}) => 
+                    <View style={styles.mainItem}>
+                      <Image
+                        source={{uri: item.image}}
+                        resizeMode="cover"
+                        style={styles.mainItemImage}
+                      />
+                      <Text style={styles.mainItemTitle}>{item.title}</Text>
+                      <Text style={styles.mainItemDesc}>{item.body}</Text>
+                      <View style={styles.mainItemSizes}>
+                        <View style={styles.mainItemSize}>
+                          <Text style={styles.mainItemSizeTitle}>Regular</Text>
+                          <Text style={styles.mainItemSizePrice}>{item.Regular}</Text>
+                        </View>
+                        <View style={[styles.mainItemSize, styles.horizontalBorders]}>
+                          <Text style={styles.mainItemSizeTitle}>Medium</Text>
+                          <Text style={styles.mainItemSizePrice}>{item.Medium}</Text>
+                        </View>
+                        <View style={styles.mainItemSize}>
+                          <Text style={styles.mainItemSizeTitle}>Large</Text>
+                          <Text style={styles.mainItemSizePrice}>{item.Large}</Text>
+                        </View>
+                      </View>
                     </View>
-                    <View style={[styles.mainItemSize, styles.horizontalBorders]}>
-                      <Text style={styles.mainItemSizeTitle}>Medium</Text>
-                      <Text style={styles.mainItemSizePrice}>160/-</Text>
-                    </View>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Large</Text>
-                      <Text style={styles.mainItemSizePrice}>270/-</Text>
-                    </View>
-                  </View>
-                </View>
-                
-                <View style={styles.mainItem}>
-                  <Image
-                    source={require('../../assets/images/products/Simply-Veg-Pizza.jpg')}
-                    resizeMode="cover"
-                    style={styles.mainItemImage}
-                  />
-                  <Text style={styles.mainItemTitle}>Simply Veg</Text>
-                  <Text style={styles.mainItemDesc}>Cheese, Tomato, Onion</Text>
-                  <View style={styles.mainItemSizes}>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Regular</Text>
-                      <Text style={styles.mainItemSizePrice}>100/-</Text>
-                    </View>
-                    <View style={[styles.mainItemSize, styles.horizontalBorders]}>
-                      <Text style={styles.mainItemSizeTitle}>Medium</Text>
-                      <Text style={styles.mainItemSizePrice}>160/-</Text>
-                    </View>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Large</Text>
-                      <Text style={styles.mainItemSizePrice}>270/-</Text>
-                    </View>
-                  </View>
-                </View>
-
-                <View style={styles.mainItem}>
-                  <Image
-                    source={require('../../assets/images/products/SpicyVeg.jpg')}
-                    resizeMode="cover"
-                    style={styles.mainItemImage}
-                  />
-                  <Text style={styles.mainItemTitle}>Spicy Veg</Text>
-                  <Text style={styles.mainItemDesc}>Cheese, Onion, Green Chilly, Tomato</Text>
-                  <View style={styles.mainItemSizes}>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Regular</Text>
-                      <Text style={styles.mainItemSizePrice}>100/-</Text>
-                    </View>
-                    <View style={[styles.mainItemSize, styles.horizontalBorders]}>
-                      <Text style={styles.mainItemSizeTitle}>Medium</Text>
-                      <Text style={styles.mainItemSizePrice}>160/-</Text>
-                    </View>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Large</Text>
-                      <Text style={styles.mainItemSizePrice}>270/-</Text>
-                    </View>
-                  </View>
-                </View>
-                
-                <View style={styles.mainItem}>
-                  <Text style={styles.mainViewTitle}>SUPREME PIZZA</Text>
-                </View>
-
-                <View style={styles.mainItem}>
-                  <Image
-                    source={require('../../assets/images/products/VegBite.jpg')}
-                    resizeMode="cover"
-                    style={styles.mainItemImage}
-                  />
-                  <Text style={styles.mainItemTitle}>Veg Bite</Text>
-                  <Text style={styles.mainItemDesc}>Cheese, Onion, Capsicum, Tomato</Text>
-                  <View style={styles.mainItemSizes}>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Regular</Text>
-                      <Text style={styles.mainItemSizePrice}>120/-</Text>
-                    </View>
-                    <View style={[styles.mainItemSize, styles.horizontalBorders]}>
-                      <Text style={styles.mainItemSizeTitle}>Medium</Text>
-                      <Text style={styles.mainItemSizePrice}>160/-</Text>
-                    </View>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Large</Text>
-                      <Text style={styles.mainItemSizePrice}>280/-</Text>
-                    </View>
-                  </View>
-                </View>
-
-                <View style={styles.mainItem}>
-                  <Image
-                    source={require('../../assets/images/products/MushroomChilly.jpg')}
-                    resizeMode="cover"
-                    style={styles.mainItemImage}
-                  />
-                  <Text style={styles.mainItemTitle}>Mushroom Chilly</Text>
-                  <Text style={styles.mainItemDesc}>Cheese, Green Chilly, Garlic, Mushroom</Text>
-                  <View style={styles.mainItemSizes}>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Regular</Text>
-                      <Text style={styles.mainItemSizePrice}>130/-</Text>
-                    </View>
-                    <View style={[styles.mainItemSize, styles.horizontalBorders]}>
-                      <Text style={styles.mainItemSizeTitle}>Medium</Text>
-                      <Text style={styles.mainItemSizePrice}>170/-</Text>
-                    </View>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Large</Text>
-                      <Text style={styles.mainItemSizePrice}>290/-</Text>
-                    </View>
-                  </View>
-                </View>
-
-                <View style={styles.mainItem}>
-                  <Image
-                    source={require('../../assets/images/products/MexicanCashew.jpg')}
-                    resizeMode="cover"
-                    style={styles.mainItemImage}
-                  />
-                  <Text style={styles.mainItemTitle}>Mexican Cashew</Text>
-                  <Text style={styles.mainItemDesc}>Cheese, Green Chilly, Sweet Corn, Black Olives, Tomato</Text>
-                  <View style={styles.mainItemSizes}>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Regular</Text>
-                      <Text style={styles.mainItemSizePrice}>130/-</Text>
-                    </View>
-                    <View style={[styles.mainItemSize, styles.horizontalBorders]}>
-                      <Text style={styles.mainItemSizeTitle}>Medium</Text>
-                      <Text style={styles.mainItemSizePrice}>180/-</Text>
-                    </View>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Large</Text>
-                      <Text style={styles.mainItemSizePrice}>300/-</Text>
-                    </View>
-                  </View>
-                </View>
-
-                <View style={styles.mainItem}>
-                  <Image
-                    source={require('../../assets/images/products/VegJalfry.jpg')}
-                    resizeMode="cover"
-                    style={styles.mainItemImage}
-                  />
-                  <Text style={styles.mainItemTitle}>Veg Jalfry</Text>
-                  <Text style={styles.mainItemDesc}>Cheese, Capsicum, Onion, Baby Corn, Jalapeno</Text>
-                  <View style={styles.mainItemSizes}>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Regular</Text>
-                      <Text style={styles.mainItemSizePrice}>140/-</Text>
-                    </View>
-                    <View style={[styles.mainItemSize, styles.horizontalBorders]}>
-                      <Text style={styles.mainItemSizeTitle}>Medium</Text>
-                      <Text style={styles.mainItemSizePrice}>190/-</Text>
-                    </View>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Large</Text>
-                      <Text style={styles.mainItemSizePrice}>300/-</Text>
-                    </View>
-                  </View>
-                </View>
-                
-                <View style={styles.mainItem}>
-                  <Text style={styles.mainViewTitle}>INDIAN PIZZA</Text>
-                </View>
-
-                <View style={styles.mainItem}>
-                  <Image
-                    source={require('../../assets/images/products/TikkaMasala.jpg')}
-                    resizeMode="cover"
-                    style={styles.mainItemImage}
-                  />
-                  <Text style={styles.mainItemTitle}>Tikka Masala</Text>
-                  <Text style={styles.mainItemDesc}>Cheese, Onion, Green Chilly, Garlic, Spinach</Text>
-                  <View style={styles.mainItemSizes}>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Regular</Text>
-                      <Text style={styles.mainItemSizePrice}>140/-</Text>
-                    </View>
-                    <View style={[styles.mainItemSize, styles.horizontalBorders]}>
-                      <Text style={styles.mainItemSizeTitle}>Medium</Text>
-                      <Text style={styles.mainItemSizePrice}>210/-</Text>
-                    </View>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Large</Text>
-                      <Text style={styles.mainItemSizePrice}>300/-</Text>
-                    </View>
-                  </View>
-                </View>
-
-                <View style={styles.mainItem}>
-                  <Image
-                    source={require('../../assets/images/products/BBQ.jpg')}
-                    resizeMode="cover"
-                    style={styles.mainItemImage}
-                  />
-                  <Text style={styles.mainItemTitle}>BBQ</Text>
-                  <Text style={styles.mainItemDesc}>Cheese, Onion, Capsicum, Tomato, BBQ Paneer</Text>
-                  <View style={styles.mainItemSizes}>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Regular</Text>
-                      <Text style={styles.mainItemSizePrice}>150/-</Text>
-                    </View>
-                    <View style={[styles.mainItemSize, styles.horizontalBorders]}>
-                      <Text style={styles.mainItemSizeTitle}>Medium</Text>
-                      <Text style={styles.mainItemSizePrice}>220/-</Text>
-                    </View>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Large</Text>
-                      <Text style={styles.mainItemSizePrice}>310/-</Text>
-                    </View>
-                  </View>
-                </View>
-
-                <View style={styles.mainItem}>
-                  <Image
-                    source={require('../../assets/images/products/KajusSpecial.jpg')}
-                    resizeMode="cover"
-                    style={styles.mainItemImage}
-                  />
-                  <Text style={styles.mainItemTitle}>Kaju's Special</Text>
-                  <Text style={styles.mainItemDesc}>Cheese, Onion, Capsicum, Mushroom, Tomato, Sweet Corn, White Paneer</Text>
-                  <View style={styles.mainItemSizes}>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Regular</Text>
-                      <Text style={styles.mainItemSizePrice}>170/-</Text>
-                    </View>
-                    <View style={[styles.mainItemSize, styles.horizontalBorders]}>
-                      <Text style={styles.mainItemSizeTitle}>Medium</Text>
-                      <Text style={styles.mainItemSizePrice}>240/-</Text>
-                    </View>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Large</Text>
-                      <Text style={styles.mainItemSizePrice}>360/-</Text>
-                    </View>
-                  </View>
-                </View>
-
-                <View style={styles.mainItem}>
-                  <Image
-                    source={require('../../assets/images/products/ThreeCheesePizza.jpg')}
-                    resizeMode="cover"
-                    style={styles.mainItemImage}
-                  />
-                  <Text style={styles.mainItemTitle}>Three Cheese Pizza</Text>
-                  <Text style={styles.mainItemDesc}>Three Types of Cheese, Capsicum, Sweet Corn, Jalapeno</Text>
-                  <View style={styles.mainItemSizes}>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Regular</Text>
-                      <Text style={styles.mainItemSizePrice}>N/A</Text>
-                    </View>
-                    <View style={[styles.mainItemSize, styles.horizontalBorders]}>
-                      <Text style={styles.mainItemSizeTitle}>Medium</Text>
-                      <Text style={styles.mainItemSizePrice}>280/-</Text>
-                    </View>
-                    <View style={styles.mainItemSize}>
-                      <Text style={styles.mainItemSizeTitle}>Large</Text>
-                      <Text style={styles.mainItemSizePrice}>N/A/</Text>
-                    </View>
-                  </View>
-                </View>
+                  }
+                  keyExtractor={({id}, index) => id}
+                />
                 
               </View>
             </View>
@@ -380,7 +141,8 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 8,
     backgroundColor: '#fff',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    alignSelf: 'center'
   },
   mainItemImage: {
     height: 150,
