@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import HomeScreen from './screens/HomeScreen';
 import MenuScreen from './screens/MenuScreen';
 import OffersScreen from './screens/OffersScreen';
+import ContactScreen from './screens/ContactScreen';
 import PizzaScreen from './screens/menu_items/PizzaScreen';
 import PastaScreen from './screens/menu_items/PastaScreen';
 import GarlicBread from './screens/menu_items/GarlicBread';
@@ -93,6 +94,9 @@ const AppDrawerNavigator = createDrawerNavigator({
   },
   Offers: {
     screen: OffersScreen,
+  },
+  Contact: {
+    screen: ContactScreen,
   },
   Pizza: {
     screen: PizzaScreen,
