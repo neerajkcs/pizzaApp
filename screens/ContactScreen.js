@@ -24,10 +24,16 @@ export default class OffersScreen extends React.Component {
     this.setState({[field]:text});
   }
   submit (){
-    let collection={}
-    collection.name=this.state.name,
-    collection.email=this.state.email,
-    collection.message=this.state.message
+    let collection={
+      'webform' : 'e9d34af1-2e46-4797-9962-19f7250afb0d',
+      'submission' : {
+        'data' : {
+          '1' : {'values': {'value': {'0' : this.state.name}}},
+          '2' : {'values': {'value': {'0' : this.state.email}}},
+          '3' : {'values': {'value': {'0' : this.state.message}}},
+        }
+      }
+    }
     console.warn(collection);
 
     var url = 'http://www.kajuspizza.com/kajusdev/api/submission';
