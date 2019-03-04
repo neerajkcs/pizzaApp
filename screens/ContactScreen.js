@@ -7,7 +7,7 @@ export default class OffersScreen extends React.Component {
   static navigationOptions = {
     title: 'Contact',
     drawerIcon: ({tintColor}) => (
-      <Ionicons name="ios-pricetags" size={18} color={tintColor} />
+      <Ionicons name="ios-contact" size={18} color={tintColor} />
     )
   };
 
@@ -65,22 +65,27 @@ export default class OffersScreen extends React.Component {
                 <TextInput
                   placeholder="Name"
                   style={styles.input}
+                  placeholderTextColor="rgba(255,255,255,0.65)"
                   onChangeText={(text)=>this.updateValue(text, 'name')}
                 />
                 <TextInput
                   placeholder="Email"
                   style={styles.input}
+                  autoCapitalize="none"
+                  textContentType="emailAddress"
+                  placeholderTextColor="rgba(255,255,255,0.65)"
                   onChangeText={(text)=>this.updateValue(text, 'email')}
                 />
                 <TextInput
                   placeholder="Message"
                   multiline = {true}
                   numberOfLines = {4}
+                  placeholderTextColor="rgba(255,255,255,0.65)"
                   style={styles.inputMultiline}
                   onChangeText={(text)=>this.updateValue(text, 'message')}
                 />
                 <TouchableOpacity style={styles.btn} onPress={()=>this.submit()}>
-                  <Text>Submit</Text>
+                  <PatuaText style={styles.btnText}>Submit</PatuaText>
                 </TouchableOpacity>
               </View>
             </View>
@@ -126,20 +131,32 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    backgroundColor: '#fff',
+    borderColor: '#fff',
+    borderWidth: 1,
+    borderRadius: 4,
     marginBottom: 20,
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
+    color: '#fff'
   },
   inputMultiline: {
     height: 100,
-    backgroundColor: '#fff',
+    borderColor: '#fff',
+    borderWidth: 1,
+    borderRadius: 4,
     marginBottom: 20,
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
+    color: '#fff'
   },
   btn: {
     height: 40,
-    backgroundColor: 'skyblue',
+    borderRadius: 4,
+    backgroundColor: '#fffa9c',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    
+  },
+  btnText: {
+    color: '#000',
+    fontSize: 16,
   }
 });
