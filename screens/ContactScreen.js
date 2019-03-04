@@ -30,7 +30,7 @@ export default class OffersScreen extends React.Component {
     collection.message=this.state.message
     console.warn(collection);
 
-    var url = 'http://www.kajuspizza.com/kajusdev/api/webform/e9d34af1-2e46-4797-9962-19f7250afb0d';
+    var url = 'http://www.kajuspizza.com/kajusdev/api/submission';
 
     fetch(url, {
       method: 'POST', // or 'PUT'
