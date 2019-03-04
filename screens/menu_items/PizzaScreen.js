@@ -15,7 +15,7 @@ export default class PizzaScreen extends React.Component {
   }
 
   componentDidMount(){
-    return fetch('http://www.kajuspizza.com/kajusdev/api/pizzalist')
+    return fetch('http://kajuspizza.com/api/pizzaapi')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -35,7 +35,7 @@ export default class PizzaScreen extends React.Component {
   render() {
     if(this.state.isLoading){
       return(
-        <View style={{flex: 1, padding: 20}}>
+        <View style={styles.activeIndictor, {flex: 1, padding: 20}}>
           <ActivityIndicator/>
         </View>
       )
@@ -189,5 +189,8 @@ const styles = StyleSheet.create({
     borderColor: '#fff',
     borderLeftWidth: 1,
     borderRightWidth: 1
+  },
+  activeIndictor: {
+    backgroundColor: '#C71628'
   }
 });

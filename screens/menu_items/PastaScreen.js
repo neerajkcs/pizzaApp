@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, ScrollView, StyleSheet, View, Text, TouchableOpacity, Image, SafeAreaView } from 'react-native';
+import { FlatList, ActivityIndicator, Platform, ScrollView, StyleSheet, View, Text, TouchableOpacity, Image, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { PatuaText } from '../../components/StyledText';
 
@@ -8,8 +8,38 @@ export default class PizzaScreen extends React.Component {
     title: 'Pasta',
     drawerLabel: () => null
   };
+  
+  constructor(props){
+    super(props);
+    this.state ={ isLoading: true}
+  }
 
-  render() {
+  componentDidMount(){
+    return fetch('http://kajuspizza.com/api/pastaapi')
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({
+          isLoading: false,
+          dataSource: responseJson,
+        }, function(){
+
+        });
+
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
+  }
+
+  render() {    
+    if(this.state.isLoading){
+      return(
+        <View style={{flex: 1, padding: 20}}>
+          <ActivityIndicator/>
+        </View>
+      )
+    }
     return (
       <View style={styles.container}>
         <SafeAreaView style={{flex: 1}}>
@@ -31,26 +61,21 @@ export default class PizzaScreen extends React.Component {
                 <PatuaText style={styles.contentText}>Pasta is a hot favorite of Italian cuisine and is cooked with a combination of veggies, garlic, herbs, tomato & white sauce. </PatuaText>
               </View>
               <View style={styles.mainContent}>
-                <View style={styles.mainItem}>
-                  <Image
-                    source={require('../../assets/images/products/pastaWhite.jpg')}
-                    resizeMode="cover"
-                    style={styles.mainItemImage}
-                  />
-                  <Text style={styles.mainItemTitle}>Pasta in white sauce</Text>
-                  <Text style={styles.mainItemSizePrice}>95.00/-</Text>
-                </View>
-
-                <View style={styles.mainItem}>
-                  <Image
-                    source={require('../../assets/images/products/pastaRed.jpg')}
-                    resizeMode="cover"
-                    style={styles.mainItemImage}
-                  />
-                  <Text style={styles.mainItemTitle}>Pasta in red sauce</Text>
-                  <Text style={styles.mainItemSizePrice}>95.00/-</Text>                  
-                </View>
-                
+                <FlatList
+                  data={this.state.dataSource}
+                  renderItem={({item}) =>
+                    <View style={styles.mainItem}>
+                       <Image
+                            source={{uri: item.image}}
+                            resizeMode="cover"
+                            style={styles.mainItemImage}
+                          />
+                      <Text style={styles.mainItemTitle}>{item.title}</Text>
+                      <Text style={styles.mainItemSizePrice}>{item.price}</Text>
+                    </View>
+                  }
+                  keyExtractor={({id}, index) => id}
+                />
               </View>
             </View>
           </ScrollView>

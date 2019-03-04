@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, ScrollView, StyleSheet, View, Text, TouchableOpacity, Image, SafeAreaView } from 'react-native';
+import { FlatList, ActivityIndicator, Platform, ScrollView, StyleSheet, View, Text, TouchableOpacity, Image, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { PatuaText } from '../../components/StyledText';
 
@@ -8,8 +8,38 @@ export default class PizzaScreen extends React.Component {
     title: 'Garlic',
     drawerLabel: () => null
   };
+  
+  constructor(props){
+    super(props);
+    this.state ={ isLoading: true}
+  }
 
-  render() {
+  componentDidMount(){
+    return fetch('http://kajuspizza.com/api/garlicapi')
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({
+          isLoading: false,
+          dataSource: responseJson,
+        }, function(){
+
+        });
+
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
+  }
+
+  render() {    
+    if(this.state.isLoading){
+      return(
+        <View style={{flex: 1, padding: 20}}>
+          <ActivityIndicator/>
+        </View>
+      )
+    }
     return (
       <View style={styles.container}>
         <SafeAreaView style={{flex: 1}}>
@@ -31,37 +61,22 @@ export default class PizzaScreen extends React.Component {
                 <PatuaText style={styles.contentText}>Garlic Bread is a French bread dish layered with butter, herbs & topped with garlic flakes & cheese and toasted in the oven.</PatuaText>
               </View>
               <View style={styles.mainContent}>
-                
-                <View style={styles.mainItem}>
-                  <Image
-                    source={require('../../assets/images/products/supremGarlic.jpg')}
-                    resizeMode="cover"
-                    style={styles.mainItemImage}
+                <FlatList
+                  data={this.state.dataSource}
+                  renderItem={({item}) =>
+                    <View style={styles.mainItem}>
+                      <Image
+                        source={{uri: item.image}}
+                        resizeMode="cover"
+                        style={styles.mainItemImage}
+                      />
+                      <Text style={styles.mainItemTitle}>{item.title}</Text>
+                      <Text style={styles.mainItemDesc}>{item.body}</Text>
+                      <Text style={styles.mainItemSizePrice}>{item.price}</Text>
+                    </View>
+                  }
+                  keyExtractor={({id}, index) => id}
                   />
-                  <Text style={styles.mainItemTitle}>Supreme Garlic Bread/Jain</Text>
-                  <Text style={styles.mainItemDesc}>Sweet Corn, Capsicum or G. Chilly</Text>
-                  <Text style={styles.mainItemSizePrice}>80.00/-</Text>
-                </View>
-                
-                <View style={styles.mainItem}>
-                  <Image
-                    source={require('../../assets/images/products/cheeseGarlic.jpg')}
-                    resizeMode="cover"
-                    style={styles.mainItemImage}
-                  />
-                  <Text style={styles.mainItemTitle}>Garlic Bread Cheese/Jain</Text>
-                  <Text style={styles.mainItemSizePrice}>70.00/-</Text>
-                </View>
-                
-                <View style={styles.mainItem}>
-                  <Image
-                    source={require('../../assets/images/products/plainGarlic.jpg')}
-                    resizeMode="cover"
-                    style={styles.mainItemImage}
-                  />
-                  <Text style={styles.mainItemTitle}>Garlic Bread/Jain</Text>
-                  <Text style={styles.mainItemSizePrice}>60.00/-</Text>
-                </View>
               </View>
             </View>
           </ScrollView>
